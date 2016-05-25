@@ -32,7 +32,7 @@ public class Flow {
 
 	@Override
 	public String toString() {
-		return "Flow [day=" + day + ", flow=" + flow + ", river=" + river + "]";
+		return "Flusso del fiume "+river+" al giorno "+day+" al livello "+flow;
 	}
 
 }
