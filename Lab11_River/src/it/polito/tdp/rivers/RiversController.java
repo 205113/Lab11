@@ -53,12 +53,15 @@ public class RiversController {
     	this.txtEndDate.setText(s.getUltima().toString());
     	this.txtFMed.setText(s.getFmed()+"");
     	this.txtNumMeasurements.setText(s.getMisurazioni()+"");
-    	
+    	btnSimula.setDisable(false);
     }
-    
     public void simula(){
+    	
     	//simulazione
-    	Double fmed= Double.parseDouble(this.txtFMed.getText());
+    	if(txtK.getText().compareTo("")==0)
+    		txtResult.setText("non hai inserito k");
+    	else{	
+    	Double fmed= Double.parseDouble(this.txtFMed.getText())*3600*24;
     	int k= Integer.parseInt(this.txtK.getText());
     	Double Q = 30*fmed*k;
     	Double c=Q/2;
@@ -66,6 +69,7 @@ public class RiversController {
     	simulatore.simula(Q, c, min,boxRiver.getValue());
     	this.txtResult.setText("Giorni senza erogazione: "+ simulatore.getMancati()+"\n"+"Occupazione media: "+simulatore.getcMedia());
     }
+   }
     public void setSimulatore(Simulatore s){
     	this.simulatore=s;
     	RiversDAO r= new RiversDAO();
@@ -81,6 +85,6 @@ public class RiversController {
         assert txtFMed != null : "fx:id=\"txtFMed\" was not injected: check your FXML file 'Rivers.fxml'.";
         assert btnSimula != null : "fx:id=\"btnSimula\" was not injected: check your FXML file 'Rivers.fxml'.";
         assert txtK != null : "fx:id=\"txtK\" was not injected: check your FXML file 'Rivers.fxml'.";
-
+        btnSimula.setDisable(true);
     }
 }

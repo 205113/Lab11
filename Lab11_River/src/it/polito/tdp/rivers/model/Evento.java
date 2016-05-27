@@ -67,6 +67,10 @@ public class Evento implements Comparable<Evento>{
 	}
 	@Override
 	public int compareTo(Evento altro) {
+		if(this.evento==tipo.tracimazione)
+			return -1;
+		if(altro.getEvento()==tipo.tracimazione)
+			return 1;
 		return this.data.compareTo(altro.getData());
 	}
 	
